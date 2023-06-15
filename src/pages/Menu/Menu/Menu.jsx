@@ -9,8 +9,15 @@ import Sopu from "../Soup/Sopu";
 import MenuItem from "../../../Shared/MenuItem/MenuItem";
 import useMenu from "../../../hooks/useMenu";
 import SectionTittle from "../../../components/SectionTittle/SectionTittle";
+import MenuCategory from "../../../Shared/MenuCategory/MenuCategory";
 const Menu = () => {
     const [menu] = useMenu()
+    const offer = menu.filter(item => item.category === 'offered')
+    const desert = menu.filter(item => item.category === 'dessert')
+    const salad = menu.filter(item => item.category === 'salad')
+    const pizza = menu.filter(item => item.category === 'pizza')
+    const soup = menu.filter(item => item.category === 'soup')
+
     return (
         <div>
             <Helmet>
@@ -24,50 +31,15 @@ const Menu = () => {
 
             <SectionTittle heading='todays offer' subHeading='Do Not miss'></SectionTittle>
 
-            <div className="grid md:grid-cols-2 gap-14 mb-10 mt-10">
-                {
-                    menu.filter(item => item.category === 'offered').map(item => <MenuItem
-                        key={item._id}
-                        item={item}
-                    ></MenuItem>)
-                }
-            </div>
+            <MenuCategory items={offer}></MenuCategory>
             <Desert></Desert>
-            <div className="grid md:grid-cols-2 gap-14 mb-10 mt-10">
-                {
-                    menu.filter(item => item.category === 'dessert').map(item => <MenuItem
-                        key={item._id}
-                        item={item}
-                    ></MenuItem>)
-                }
-            </div>
+            <MenuCategory items={desert}></MenuCategory>
             <Pizza></Pizza>
-            <div className="grid md:grid-cols-2 gap-14 mb-10 mt-10">
-                {
-                    menu.filter(item => item.category === 'pizza').map(item => <MenuItem
-                        key={item._id}
-                        item={item}
-                    ></MenuItem>)
-                }
-            </div>
+            <MenuCategory items={pizza}></MenuCategory>
             <Salad></Salad>
-            <div className="grid md:grid-cols-2 gap-14 mb-10 mt-10">
-                {
-                    menu.filter(item => item.category === 'salad').map(item => <MenuItem
-                        key={item._id}
-                        item={item}
-                    ></MenuItem>)
-                }
-            </div>
+            <MenuCategory items={salad}></MenuCategory>
             <Sopu></Sopu>
-            <div className="grid md:grid-cols-2 gap-14 mb-10 mt-10">
-                {
-                    menu.filter(item => item.category === 'soup').map(item => <MenuItem
-                        key={item._id}
-                        item={item}
-                    ></MenuItem>)
-                }
-            </div>
+            <MenuCategory items={soup}></MenuCategory>
         </div>
     );
 };
