@@ -4,9 +4,10 @@ const NavBar = () => {
     const navOption = <>
         <li><Link to='/'>Home</Link></li>
         <li><Link to='/menu'>Our Menu</Link></li>
+        <li><Link to='/order/salad'>Our Order</Link></li>
         <li><a>Contract Us</a></li>
         <li><a>Dashboard</a></li>
-        <li><a>Our Shop</a></li>
+
     </>
     return (
         <div>

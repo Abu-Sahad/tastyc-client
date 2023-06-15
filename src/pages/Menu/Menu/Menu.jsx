@@ -1,15 +1,13 @@
 import { Helmet } from "react-helmet-async";
 import Cover from "../../../Shared/Cover/Cover";
 import menuImg from '../../../assets/menu/banner3.jpg'
-import PopularItem from "../../Home/PopularItem/PopularItem";
-import Desert from "../Desert/Desert";
-import Pizza from "../Pizza/Pizza";
-import Salad from "../Salad/Salad";
-import Sopu from "../Soup/Sopu";
-import MenuItem from "../../../Shared/MenuItem/MenuItem";
 import useMenu from "../../../hooks/useMenu";
 import SectionTittle from "../../../components/SectionTittle/SectionTittle";
 import MenuCategory from "../../../Shared/MenuCategory/MenuCategory";
+import desertImg from '../../../assets/menu/dessert-bg.jpeg'
+import pizzaImg from '../../../assets/menu/pizza-bg.jpg'
+import saladImg from '../../../assets/menu/salad-bg.jpg'
+import soupImg from '../../../assets/menu/soup-bg.jpg'
 const Menu = () => {
     const [menu] = useMenu()
     const offer = menu.filter(item => item.category === 'offered')
@@ -25,21 +23,17 @@ const Menu = () => {
             </Helmet>
             <Cover
                 img={menuImg}
-                tittle='OUR MENU'
+                tittle='our menu'
                 text='Would You Like To Try a Disk'
             ></Cover>
 
             <SectionTittle heading='todays offer' subHeading='Do Not miss'></SectionTittle>
 
             <MenuCategory items={offer}></MenuCategory>
-            <Desert></Desert>
-            <MenuCategory items={desert}></MenuCategory>
-            <Pizza></Pizza>
-            <MenuCategory items={pizza}></MenuCategory>
-            <Salad></Salad>
-            <MenuCategory items={salad}></MenuCategory>
-            <Sopu></Sopu>
-            <MenuCategory items={soup}></MenuCategory>
+            <MenuCategory items={desert} tittle='dessert' img={desertImg}></MenuCategory>
+            <MenuCategory items={pizza} tittle='pizza' img={pizzaImg}></MenuCategory>
+            <MenuCategory items={salad} tittle='salad' img={saladImg}></MenuCategory>
+            <MenuCategory items={soup} tittle='soup' img={soupImg}></MenuCategory>
         </div>
     );
 };
