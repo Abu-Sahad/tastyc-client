@@ -5,11 +5,12 @@ import Footer from "../Shared/Footer/Footer";
 const Main = () => {
     const location = useLocation()
     const noHeaderFooter = location.pathname.includes('login')
+    const noHeaderFootersign = location.pathname.includes('signUp')
     return (
         <div>
-            {noHeaderFooter || <NavBar />}
+            {noHeaderFooter || noHeaderFootersign || <NavBar />}
             <Outlet />
-            {noHeaderFooter || <Footer />}
+            {noHeaderFooter || noHeaderFootersign || <Footer />}
         </div>
     );
 };
