@@ -7,6 +7,8 @@ import Menu from "../pages/Menu/Menu/Menu";
 import Order from "../pages/Order/Order/Order";
 import LogIn from "../pages/LogIn/LogIn";
 import SingUp from "../pages/SingUp/SingUp";
+import Dashboard from "../Layouts/Dashboard";
+import MyCart from "../pages/Dashboard/Mycart/MyCart";
 
 export const router = createBrowserRouter([
     {
@@ -32,7 +34,17 @@ export const router = createBrowserRouter([
             {
                 path: "signUp",
                 element: < SingUp />,
-            },
+            }
         ],
     },
+    {
+        path: "dashboard",
+        element: <Dashboard />,
+        children: [
+            {
+                path: "myCart",
+                element: < MyCart />,
+            },
+        ]
+    }
 ]);
