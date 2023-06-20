@@ -10,6 +10,7 @@ import SingUp from "../pages/SingUp/SingUp";
 import Dashboard from "../Layouts/Dashboard";
 import MyCart from "../pages/Dashboard/Mycart/MyCart";
 import PrivateRoute from "./PrivateRoute";
+import AllUsers from "../pages/Dashboard/AllUsers/AllUsers";
 
 export const router = createBrowserRouter([
     {
@@ -45,6 +46,10 @@ export const router = createBrowserRouter([
             {
                 path: "myCart",
                 element: < MyCart />,
+            },
+            {
+                path: "allUsers",
+                element: < AllUsers/>,
             },
         ]
     }
