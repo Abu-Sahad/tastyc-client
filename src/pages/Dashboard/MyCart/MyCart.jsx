@@ -3,11 +3,42 @@ import SectionTittle from '../../../components/SectionTittle/SectionTittle';
 import useCart from '../../../hooks/useCart';
 import { AuthContext } from '../../../Providers/AuthProvider';
 import { RiDeleteBin2Fill } from 'react-icons/ri';
+import Swal from 'sweetalert2';
 
 const MyCart = () => {
-    const [cart] = useCart();
+    const [cart,refetch] = useCart();
     const { loading } = useContext(AuthContext)
     console.log(cart);
+
+    const handleDeleteCartItem = (row) => {
+        Swal.fire({
+            title: 'Are you sure?',
+            text: "You won't be able to revert this!",
+            icon: 'warning',
+            showCancelButton: true,
+            confirmButtonColor: '#3085d6',
+            cancelButtonColor: '#d33',
+            confirmButtonText: 'Yes, delete it!'
+        }).then((result) => {
+            if (result.isConfirmed) {
+                fetch(`http://localhost:5000/cart/${row._id}`, {
+                    method: 'DELETE'
+                })
+                    .then(res => res.json())
+                    .then(data => {
+                        if (data.deletedCount > 0) {
+                            refetch()
+                            Swal.fire(
+                                'Deleted!',
+                                'Your file has been deleted.',
+                                'success'
+                            )
+                        }
+                    })
+            }
+        })
+    }
+
 
     // Check if the cart is undefined
     if (typeof cart === 'undefined') {
@@ -22,7 +53,7 @@ const MyCart = () => {
     console.log(totalLength, totalPrice);
 
     return (
-        <div className='bg-[#e0dcdc] h-full'>
+        <div className='bg-[#e0dcdc] h-full w-full'>
             <SectionTittle heading='WANNA ADD MORE?' subHeading='My Cart'></SectionTittle>
             <div className='flex justify-around mb-10'>
                 <p className='uppercase font-semibold text-2xl'>Total Items: {totalLength}</p>
@@ -65,7 +96,7 @@ const MyCart = () => {
                                     </td>
                                     <td>{row.price}</td>
                                     <td>
-                                        <button className="btn btn-ghost text-2xl bg-[#a82b2b] text-white rounded-sm"><RiDeleteBin2Fill></RiDeleteBin2Fill></button>
+                                        <button onClick={() => handleDeleteCartItem(row)} className="btn btn-ghost text-2xl bg-[#a82b2b] text-white rounded-sm"><RiDeleteBin2Fill></RiDeleteBin2Fill></button>
                                     </td>
                                 </tr>)
                             }

@@ -22,13 +22,13 @@ const NavBar = () => {
         {user ?
 
             <>
-                <li><Link to='/dashboard/myCart'>
-                    <FaShoppingCart ></FaShoppingCart>
-                    <div className="badge badge-secondary">+{cart?.length || 0}</div>
-                </Link></li>
                 <li><Link onClick={handleLogOut}>Logout</Link></li>
             </> :
             <><li><Link to='/login'>Login</Link></li></>}
+        <li><Link to='/dashboard/myCart'>
+            <FaShoppingCart ></FaShoppingCart>
+            <div className="badge badge-secondary">+{cart?.length || 0}</div>
+        </Link></li>
 
         {/* <li><Link to='/dashboard'>Dashboard</Link></li> */}
     </>
